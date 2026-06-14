@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Patient } from 'src/patient/patient.entity';
-import { Appointment } from 'src/appointment/appointment.entity';
-import { Visit } from 'src/visit/visit.entity';
-import { Users } from 'src/users/users.entity';
+import { Patient } from '../patient/patient.entity';
+import { Appointment } from '../appointment/appointment.entity';
+import { Visit } from '../visit/visit.entity';
+import { Users } from '../users/users.entity';
 import { ReportFilterDto } from './dto/report-filter.dto';
-import { AppointmentStatus, Gender, UserType } from 'src/utils/enums';
+import { AppointmentStatus, Gender, UserType } from '../utils/enums';
 
 @Injectable()
 export class ReportsService {

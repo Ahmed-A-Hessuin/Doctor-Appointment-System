@@ -3,7 +3,7 @@ import {
     IsString, Length, Max, Min, Matches,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { Gender } from 'src/utils/enums';
+import { Gender } from '../../utils/enums';
 
 export class UpdatePatientDto {
 

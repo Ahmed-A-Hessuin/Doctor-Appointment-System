@@ -1,9 +1,9 @@
 import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { ReportsService } from './reports.service';
 import { ReportFilterDto } from './dto/report-filter.dto';
-import { Roles } from 'src/Auth/guards/decorators/user-role.decorator';
-import { AuthRolesGuard } from 'src/Auth/guards/auth.roles.guard';
-import { UserType } from 'src/utils/enums';
+import { Roles } from '../Auth/guards/decorators/user-role.decorator';
+import { AuthRolesGuard } from '../Auth/guards/auth.roles.guard';
+import { UserType } from '../utils/enums';
 
 @Controller('api/reports')
 @Roles(UserType.ADMIN)

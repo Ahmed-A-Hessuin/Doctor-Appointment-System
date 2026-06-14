@@ -3,7 +3,7 @@ import {
     IsString, Length, Matches, Min, Max,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { DoctorSpeciality } from 'src/utils/enums';
+import { DoctorSpeciality } from '../../utils/enums';
 
 export class UpdateStaffDto {
 

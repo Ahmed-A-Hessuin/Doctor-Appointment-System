@@ -4,13 +4,13 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule } from '@nestjs/config';
 import { ReportsService } from './reports.service';
 import { ReportsController } from './reports.controller';
-import { Patient } from 'src/patient/patient.entity';
-import { Appointment } from 'src/appointment/appointment.entity';
-import { Visit } from 'src/visit/visit.entity';
-import { Users } from 'src/users/users.entity';
-import { AuthRolesGuard } from 'src/Auth/guards/auth.roles.guard';
-import { UsersService } from 'src/users/users.service';
-import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
+import { Patient } from '../patient/patient.entity';
+import { Appointment } from '../appointment/appointment.entity';
+import { Visit } from '../visit/visit.entity';
+import { Users } from '../users/users.entity';
+import { AuthRolesGuard } from '../Auth/guards/auth.roles.guard';
+import { UsersService } from '../users/users.service';
+import { CloudinaryModule } from '../cloudinary/cloudinary.module';
 
 @Module({
   imports: [

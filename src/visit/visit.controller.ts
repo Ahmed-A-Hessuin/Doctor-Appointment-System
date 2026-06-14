@@ -6,11 +6,11 @@ import {
 import { VisitService } from './visit.service';
 import { CreateVisitDto } from './dto/create-visit.dto';
 import { UpdateVisitDto } from './dto/update-visit.dto';
-import { Roles } from 'src/Auth/guards/decorators/user-role.decorator';
-import { AuthRolesGuard } from 'src/Auth/guards/auth.roles.guard';
-import { CurrentUser } from 'src/Auth/guards/decorators/current-user.decorator';
-import { UserType } from 'src/utils/enums';
-import { JWTPayloadType } from 'src/utils/types';
+import { Roles } from '../Auth/guards/decorators/user-role.decorator';
+import { AuthRolesGuard } from '../Auth/guards/auth.roles.guard';
+import { CurrentUser } from '../Auth/guards/decorators/current-user.decorator';
+import { UserType } from '../utils/enums';
+import { JWTPayloadType } from '../utils/types';
 
 @Controller('api/visits')
 @UseGuards(AuthRolesGuard)
