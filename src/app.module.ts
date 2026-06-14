@@ -8,25 +8,14 @@ import { PatientModule } from './patient/patient.module';
 import { SeedModule } from './seed/seed.module';
 import { VisitModule } from './visit/visit.module';
 import { ReportsModule } from './reports/reports.module';
+import { dataSourceOptions } from '../db/data-source';
+import { AppController } from './app.controller';
 
 
 @Module({
+  controllers: [AppController],
   imports: [
-    TypeOrmModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => {
-        return {
-          type: 'postgres',
-          database: config.get<string>("DB_DATABASE"),
-          username: config.get<string>("DB_USERNAME"),
-          password: config.get<string>("DB_PASSWORD"),
-          port: config.get<number>("DB_PORT"),
-          host: 'localhost',
-          synchronize: process.env.NODE_ENV !== 'prodcution',
-          autoLoadEntities: true,
-        }
-      }
-    }),
+    TypeOrmModule.forRoot(dataSourceOptions),
     ConfigModule.forRoot({ isGlobal: true, envFilePath: `.env.${process.env.NODE_ENV}` }),
     CloudinaryModule,
     UserModule,
@@ -41,19 +30,18 @@ export class AppModule { }
 
 
 
-/*   LOCAL DATABASE */
 // {
-//       inject: [ConfigService],
-//       useFactory: (config: ConfigService) => {
-//         return {
-//           type: 'postgres',
-//           database: config.get<string>("DB_DATABASE"),
-//           username: config.get<string>("DB_USERNAME"),
-//           password: config.get<string>("DB_PASSWORD"),
-//           port: config.get<number>("DB_PORT"),
-//           host: 'localhost',
-//           synchronize: process.env.NODE_ENV !== 'prodcution',
-//           entities: []
-//         }
+//   inject: [ConfigService],
+//     useFactory: (config: ConfigService) => {
+//       return {
+//         type: 'postgres',
+//         database: config.get<string>("DB_DATABASE"),
+//         username: config.get<string>("DB_USERNAME"),
+//         password: config.get<string>("DB_PASSWORD"),
+//         port: config.get<number>("DB_PORT"),
+//         host: 'localhost',
+//         synchronize: process.env.NODE_ENV !== 'prodcution',
+//         autoLoadEntities: true,
 //       }
+//     }
 // }
