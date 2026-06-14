@@ -2,7 +2,7 @@ import {
     Entity, PrimaryGeneratedColumn, Column,
     CreateDateColumn, ManyToOne,
 } from 'typeorm';
-import { Visit } from 'src/visit/visit.entity';
+import { Visit } from '../../visit/visit.entity';
 
 @Entity('prescriptions')
 export class Prescription {

@@ -6,7 +6,7 @@ import { Users } from './users.entity';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { AuthRolesGuard } from '../Auth/guards/auth.roles.guard';
-import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
+import { CloudinaryModule } from '../cloudinary/cloudinary.module';
 
 @Module({
   imports: [

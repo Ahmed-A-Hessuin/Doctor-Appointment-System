@@ -3,11 +3,11 @@ import {
     CreateDateColumn, UpdateDateColumn,
     ManyToOne, OneToMany, JoinColumn,
 } from 'typeorm';
-import { Patient } from 'src/patient/patient.entity';
-import { Users } from 'src/users/users.entity';
-import { Appointment } from 'src/appointment/appointment.entity';
-import { CURRENT_TIMESTAMP } from 'src/utils/constants';
-import { Prescription } from 'src/visit/prescription/prescription.entity';
+import { Patient } from '../patient/patient.entity';
+import { Users } from '../users/users.entity';
+import { Appointment } from '../appointment/appointment.entity';
+import { CURRENT_TIMESTAMP } from '../utils/constants';
+import { Prescription } from '../visit/prescription/prescription.entity';
 
 @Entity('visits')
 export class Visit {

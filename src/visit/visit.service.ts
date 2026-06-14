@@ -5,14 +5,14 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Visit } from './visit.entity';
-import { Prescription } from 'src/visit/prescription/prescription.entity';
-import { Patient } from 'src/patient/patient.entity';
-import { Appointment } from 'src/appointment/appointment.entity';
-import { Users } from 'src/users/users.entity';
+import { Prescription } from '../visit/prescription/prescription.entity';
+import { Patient } from '../patient/patient.entity';
+import { Appointment } from '../appointment/appointment.entity';
+import { Users } from '../users/users.entity';
 import { CreateVisitDto } from './dto/create-visit.dto';
 import { UpdateVisitDto } from './dto/update-visit.dto';
-import { AppointmentStatus, UserType } from 'src/utils/enums';
-import { JWTPayloadType } from 'src/utils/types';
+import { AppointmentStatus, UserType } from '../utils/enums';
+import { JWTPayloadType } from '../utils/types';
 
 @Injectable()
 export class VisitService {

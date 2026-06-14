@@ -3,10 +3,10 @@ import {
     CreateDateColumn, UpdateDateColumn, DeleteDateColumn,
     OneToMany,
 } from 'typeorm';
-import { Gender } from 'src/utils/enums';
-import { CURRENT_TIMESTAMP } from 'src/utils/constants';
-import { Appointment } from 'src/appointment/appointment.entity';
-import { Visit } from 'src/visit/visit.entity';
+import { Gender } from '../utils/enums';
+import { CURRENT_TIMESTAMP } from '../utils/constants';
+import { Appointment } from '../appointment/appointment.entity';
+import { Visit } from '../visit/visit.entity';
 
 @Entity('patients')
 export class Patient {

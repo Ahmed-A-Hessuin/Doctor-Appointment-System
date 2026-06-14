@@ -5,11 +5,11 @@ import { ConfigModule } from '@nestjs/config';
 import { PatientService } from './patient.service';
 import { PatientController } from './patient.controller';
 import { Patient } from './patient.entity';
-import { Users } from 'src/users/users.entity';
-import { AuthRolesGuard } from 'src/Auth/guards/auth.roles.guard';
-import { UsersService } from 'src/users/users.service';
-import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
-import { Appointment } from 'src/appointment/appointment.entity';
+import { Users } from '../users/users.entity';
+import { AuthRolesGuard } from '../Auth/guards/auth.roles.guard';
+import { UsersService } from '../users/users.service';
+import { CloudinaryModule } from '../cloudinary/cloudinary.module';
+import { Appointment } from '../appointment/appointment.entity';
 
 @Module({
   imports: [

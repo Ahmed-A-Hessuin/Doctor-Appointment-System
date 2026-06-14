@@ -7,11 +7,11 @@ import { AppointmentService } from './appointment.service';
 import { CreateAppointmentDto } from './dto/create-appointment.dto';
 import { UpdateAppointmentStatusDto } from './dto/update-appointment-status.dto';
 import { RescheduleAppointmentDto } from './dto/reschedule-appointment.dto';
-import { Roles } from 'src/Auth/guards/decorators/user-role.decorator';
-import { AuthRolesGuard } from 'src/Auth/guards/auth.roles.guard';
-import { CurrentUser } from 'src/Auth/guards/decorators/current-user.decorator';
-import { UserType, AppointmentStatus } from 'src/utils/enums';
-import { JWTPayloadType } from 'src/utils/types';
+import { Roles } from '../Auth/guards/decorators/user-role.decorator';
+import { AuthRolesGuard } from '../Auth/guards/auth.roles.guard';
+import { CurrentUser } from '../Auth/guards/decorators/current-user.decorator';
+import { UserType, AppointmentStatus } from '../utils/enums';
+import { JWTPayloadType } from '../utils/types';
 
 @Controller('api/appointments')
 @UseGuards(AuthRolesGuard)

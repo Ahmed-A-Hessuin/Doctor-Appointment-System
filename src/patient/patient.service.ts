@@ -8,7 +8,7 @@ import { ILike, Repository } from 'typeorm';
 import { Patient } from './patient.entity';
 import { CreatePatientDto } from './dto/create-patient.dto';
 import { UpdatePatientDto } from './dto/update-patient.dto';
-import { Gender } from 'src/utils/enums';
+import { Gender } from '../utils/enums';
 
 const ALLOWED_SORT = ['name', 'age', 'createdAt'];
 

@@ -7,9 +7,9 @@ import { AppointmentService } from './appointment.service';
 import { AppointmentController } from './appointment.controller';
 import { AuthRolesGuard } from '../Auth/guards/auth.roles.guard';
 import { Users } from '../users/users.entity';
-import { UsersService } from 'src/users/users.service';
-import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
-import { Patient } from 'src/patient/patient.entity';
+import { UsersService } from '../users/users.service';
+import { CloudinaryModule } from '../cloudinary/cloudinary.module';
+import { Patient } from '../patient/patient.entity';
 
 @Module({
   imports: [

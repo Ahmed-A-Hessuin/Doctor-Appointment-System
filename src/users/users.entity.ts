@@ -2,8 +2,8 @@ import {
     Entity, PrimaryGeneratedColumn, Column,
     CreateDateColumn, UpdateDateColumn,
 } from 'typeorm';
-import { UserType, UserStatus, DoctorSpeciality } from 'src/utils/enums';
-import { CURRENT_TIMESTAMP } from 'src/utils/constants';
+import { UserType, UserStatus, DoctorSpeciality } from '../utils/enums';
+import { CURRENT_TIMESTAMP } from '../utils/constants';
 
 @Entity('users')
 export class Users {

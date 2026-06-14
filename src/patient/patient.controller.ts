@@ -6,9 +6,9 @@ import {
 import { PatientService } from './patient.service';
 import { CreatePatientDto } from './dto/create-patient.dto';
 import { UpdatePatientDto } from './dto/update-patient.dto';
-import { Roles } from 'src/Auth/guards/decorators/user-role.decorator';
-import { AuthRolesGuard } from 'src/Auth/guards/auth.roles.guard';
-import { UserType, Gender } from 'src/utils/enums';
+import { Roles } from '../Auth/guards/decorators/user-role.decorator';
+import { AuthRolesGuard } from '../Auth/guards/auth.roles.guard';
+import { UserType, Gender } from '../utils/enums';
 
 @Controller('api/patients')
 @UseGuards(AuthRolesGuard)

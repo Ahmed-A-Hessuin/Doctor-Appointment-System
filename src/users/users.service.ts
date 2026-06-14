@@ -7,13 +7,13 @@ import { Repository } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
+import { CloudinaryService } from '../cloudinary/cloudinary.service';
 import { Users } from './users.entity';
 import { LoginUserDto } from './dto/login-user.dto';
 import { CreateStaffDto } from './dto/create-staff.dto';
 import { UpdateStaffDto } from './dto/update-staff.dto';
-import { JWTPayloadType } from 'src/utils/types';
-import { UserType, UserStatus, DoctorSpeciality } from 'src/utils/enums';
+import { JWTPayloadType } from '../utils/types';
+import { UserType, UserStatus, DoctorSpeciality } from '../utils/enums';
 
 @Injectable()
 export class UsersService {

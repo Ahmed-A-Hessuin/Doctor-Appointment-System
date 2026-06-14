@@ -9,11 +9,11 @@ import { UsersService } from './users.service';
 import { LoginUserDto } from './dto/login-user.dto';
 import { CreateStaffDto } from './dto/create-staff.dto';
 import { UpdateStaffDto } from './dto/update-staff.dto';
-import { Roles } from 'src/Auth/guards/decorators/user-role.decorator';
-import { CurrentUser } from 'src/Auth/guards/decorators/current-user.decorator';
-import { AuthRolesGuard } from 'src/Auth/guards/auth.roles.guard';
-import { UserType, UserStatus, DoctorSpeciality } from 'src/utils/enums';
-import { JWTPayloadType } from 'src/utils/types';
+import { Roles } from '../Auth/guards/decorators/user-role.decorator';
+import { CurrentUser } from '../Auth/guards/decorators/current-user.decorator';
+import { AuthRolesGuard } from '../Auth/guards/auth.roles.guard';
+import { UserType, UserStatus, DoctorSpeciality } from '../utils/enums';
+import { JWTPayloadType } from '../utils/types';
 
 @Controller('api/users')
 export class UsersController {

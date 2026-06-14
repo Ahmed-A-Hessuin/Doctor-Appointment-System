@@ -1,7 +1,7 @@
-import { Patient } from 'src/patient/patient.entity';
-import { Users } from 'src/users/users.entity';
-import { CURRENT_TIMESTAMP } from 'src/utils/constants';
-import { AppointmentStatus } from 'src/utils/enums';
+import { Patient } from '../patient/patient.entity';
+import { Users } from '../users/users.entity';
+import { CURRENT_TIMESTAMP } from '../utils/constants';
+import { AppointmentStatus } from '../utils/enums';
 import {
     Entity,
     PrimaryGeneratedColumn,
