@@ -80,12 +80,13 @@ export class UsersController {
   @UseGuards(AuthRolesGuard)
   public getAllUsers(
     @Query('role') role?: UserType,
+    @Query('name') name?: string,
     @Query('status') status?: UserStatus,
     @Query('speciality') speciality?: DoctorSpeciality,
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number = 10,
   ) {
-    return this.usersService.getAllUsers(role, status, speciality, page, limit);
+    return this.usersService.getAllUsers(role, name ,status, speciality, page, limit);
   }
 
   // GET /api/users/:id  (Admin only)

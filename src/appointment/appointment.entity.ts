@@ -39,7 +39,7 @@ export class Appointment {
     @UpdateDateColumn({ type: 'timestamp', default: () => CURRENT_TIMESTAMP, onUpdate: CURRENT_TIMESTAMP })
     updatedAt: Date;
 
-    // المريض
+    // مواعيد كثيرة تنتمي لمريض واحد
     @ManyToOne(() => Patient, (patient) => patient.appointments, { onDelete: 'CASCADE' })
     patient: Patient;
 

@@ -18,8 +18,17 @@ import { CloudinaryModule } from '../cloudinary/cloudinary.module';
     JwtModule.register({}),
     ConfigModule,
     CloudinaryModule,
-  ],
-  controllers: [ReportsController],
+  ], 
   providers: [ReportsService, AuthRolesGuard, UsersService],
+  controllers: [ReportsController]
+
 })
-export class ReportsModule {}
+export class ReportsModule { }
+
+
+
+
+
+
+
+

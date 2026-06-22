@@ -21,7 +21,8 @@ import { CloudinaryModule } from '../cloudinary/cloudinary.module';
         },
       }),
     }),
-    ConfigModule, CloudinaryModule
+    ConfigModule,
+    CloudinaryModule 
   ],
   controllers: [UsersController],
   providers: [UsersService, AuthRolesGuard],

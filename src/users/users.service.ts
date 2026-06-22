@@ -3,7 +3,7 @@ import {
   BadRequestException, ForbiddenException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
@@ -80,6 +80,7 @@ export class UsersService {
 
   public async getAllUsers(
     role?: UserType,
+    name?: string,
     status?: UserStatus,
     speciality?: DoctorSpeciality,
     page: number = 1,
@@ -87,6 +88,7 @@ export class UsersService {
   ) {
     const where: any = {};
     if (role) where.userType = role;
+    if (name) where.name =  ILike(`%${name.toLowerCase()}%`) ;
     if (status) where.status = status;
     if (speciality) where.speciality = speciality;
 

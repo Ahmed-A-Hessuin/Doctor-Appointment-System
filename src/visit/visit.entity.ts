@@ -27,6 +27,9 @@ export class Visit {
     @Column({ type: 'text' })
     notes: string;
 
+    @Column({ type: 'simple-array', nullable: true })
+    attachments: string[]; 
+
     @Column({ type: 'date' })
     visitDate: string;
 

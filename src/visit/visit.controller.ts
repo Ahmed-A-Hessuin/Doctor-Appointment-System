@@ -1,16 +1,17 @@
 import {
-  Controller, Get, Post, Put, Delete,
+  Controller, Get, Post, Put, Delete, Patch,
   Body, Param, Query, ParseIntPipe,
-  DefaultValuePipe, UseGuards,
+  DefaultValuePipe, UseGuards, UseInterceptors, UploadedFiles,
 } from '@nestjs/common';
+import { FilesInterceptor } from '@nestjs/platform-express';
 import { VisitService } from './visit.service';
 import { CreateVisitDto } from './dto/create-visit.dto';
 import { UpdateVisitDto } from './dto/update-visit.dto';
-import { Roles } from '../Auth/guards/decorators/user-role.decorator';
-import { AuthRolesGuard } from '../Auth/guards/auth.roles.guard';
-import { CurrentUser } from '../Auth/guards/decorators/current-user.decorator';
-import { UserType } from '../utils/enums';
-import { JWTPayloadType } from '../utils/types';
+import { Roles } from 'src/Auth/guards/decorators/user-role.decorator';
+import { AuthRolesGuard } from 'src/Auth/guards/auth.roles.guard';
+import { CurrentUser } from 'src/Auth/guards/decorators/current-user.decorator';
+import { UserType } from 'src/utils/enums';
+import { JWTPayloadType } from 'src/utils/types';
 
 @Controller('api/visits')
 @UseGuards(AuthRolesGuard)
@@ -56,6 +57,32 @@ export class VisitController {
     @CurrentUser() payload: JWTPayloadType,
   ) {
     return this.visitService.updateVisit(id, dto, payload);
+  }
+
+
+  // POST /api/visits/:id/attachments  (Doctor only)
+  // رفع صور التحاليل والأشعة — ينفع ترفع أكتر من صورة في نفس الوقت
+  @Post(':id/attachments')
+  @Roles(UserType.DOCTOR)
+  @UseInterceptors(FilesInterceptor('files', 10)) // max 10 صور
+  public uploadAttachments(
+    @Param('id', ParseIntPipe) id: number,
+    @UploadedFiles() files: Express.Multer.File[],
+    @CurrentUser() payload: JWTPayloadType,
+  ) {
+    return this.visitService.uploadAttachments(id, files, payload);
+  }
+
+  // DELETE /api/visits/:id/attachments  (Doctor only)
+  // حذف صورة معينة بالـ URL بتاعتها
+  @Delete(':id/attachments')
+  @Roles(UserType.DOCTOR)
+  public deleteAttachment(
+    @Param('id', ParseIntPipe) id: number,
+    @Body('url') url: string,
+    @CurrentUser() payload: JWTPayloadType,
+  ) {
+    return this.visitService.deleteAttachment(id, url, payload);
   }
 
   // DELETE /api/visits/:id  (Admin only — cascade deletes prescriptions)

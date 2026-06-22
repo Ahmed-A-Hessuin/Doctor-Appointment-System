@@ -46,6 +46,7 @@ export class Patient {
     @OneToMany(() => Appointment, (appointment) => appointment.patient)
     appointments: Appointment[];
 
+    // مريض واحد يمكن أن يكون لديه اكثر من زيارة.
     @OneToMany(() => Visit, (visit) => visit.patient)
     visits: Visit[];
 }

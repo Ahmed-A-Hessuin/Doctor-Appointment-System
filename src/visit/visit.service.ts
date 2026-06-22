@@ -11,7 +11,8 @@ import { Appointment } from '../appointment/appointment.entity';
 import { Users } from '../users/users.entity';
 import { CreateVisitDto } from './dto/create-visit.dto';
 import { UpdateVisitDto } from './dto/update-visit.dto';
-import { AppointmentStatus, UserType } from '../utils/enums';
+import { AppointmentStatus, UserType } from 'src/utils/enums';
+import { CloudinaryService } from '../cloudinary/cloudinary.service';
 import { JWTPayloadType } from '../utils/types';
 
 @Injectable()
@@ -27,13 +28,12 @@ export class VisitService {
         private readonly appointmentRepo: Repository<Appointment>,
         @InjectRepository(Users)
         private readonly userRepo: Repository<Users>,
+        private readonly cloudinary: CloudinaryService,
     ) { }
 
     /**
      * Create a new visit with prescriptions (Doctor only)
      * بيتحقق إن المريض عنده موعد confirmed أو pending
-     * @param dto data for creating visit
-     * @param 
      */
     public async createVisit(dto: CreateVisitDto, payload: JWTPayloadType) {
         const patient = await this.patientRepo.findOne({ where: { id: dto.patientId } });
@@ -176,6 +176,63 @@ export class VisitService {
             where: { id },
             relations: ['patient', 'doctor', 'prescriptions'],
         });
+    }
+
+
+    /**
+     * Upload attachments (lab results, X-rays) to a visit (Doctor only)
+     * @param id visit id
+     * @param files uploaded files
+     * @param payload JWT payload
+     */
+    public async uploadAttachments(
+        id: number,
+        files: Express.Multer.File[],
+        payload: JWTPayloadType,
+    ) {
+        const visit = await this.visitRepo.findOne({
+            where: { id },
+            relations: ['doctor'],
+        });
+        if (!visit) throw new NotFoundException('Visit not found');
+
+        if (visit.doctor.id !== payload.id) {
+            throw new ForbiddenException('You can only add attachments to your own visits');
+        }
+
+        // رفع كل الصور على Cloudinary
+        const uploadPromises = files.map(file => this.cloudinary.uploadFile(file));
+        const results = await Promise.all(uploadPromises);
+        const newUrls = results.map(r => r.secure_url);
+
+        // إضافة الـ URLs الجديدة للموجودة
+        visit.attachments = [...(visit.attachments || []), ...newUrls];
+        await this.visitRepo.save(visit);
+
+        return {
+            message: `${files.length} attachment(s) uploaded successfully`,
+            attachments: visit.attachments,
+        };
+    }
+
+    /**
+     * Delete single attachment from visit (Doctor only)
+     */
+    public async deleteAttachment(id: number, url: string, payload: JWTPayloadType) {
+        const visit = await this.visitRepo.findOne({
+            where: { id },
+            relations: ['doctor'],
+        });
+        if (!visit) throw new NotFoundException('Visit not found');
+
+        if (visit.doctor.id !== payload.id) {
+            throw new ForbiddenException('You can only edit your own visits');
+        }
+
+        visit.attachments = (visit.attachments || []).filter(a => a !== url);
+        await this.visitRepo.save(visit);
+
+        return { message: 'Attachment removed', attachments: visit.attachments };
     }
 
     /**

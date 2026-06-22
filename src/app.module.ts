@@ -15,7 +15,21 @@ import { AppController } from './app.controller';
 @Module({
   controllers: [AppController],
   imports: [
-    TypeOrmModule.forRoot(dataSourceOptions),
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => {
+        return {
+          type: 'postgres',
+          database: config.get<string>("DB_DATABASE"),
+          username: config.get<string>("DB_USERNAME"),
+          password: config.get<string>("DB_PASSWORD"),
+          port: config.get<number>("DB_PORT"),
+          host: 'localhost',
+          synchronize: process.env.NODE_ENV !== 'prodcution',
+          autoLoadEntities: true,
+        }
+      }
+    }),
     ConfigModule.forRoot({ isGlobal: true, envFilePath: `.env.${process.env.NODE_ENV}` }),
     CloudinaryModule,
     UserModule,

@@ -33,6 +33,10 @@ export class CreateVisitDto {
     notes?: string;
 
     @IsOptional()
+    @IsArray()
+    attachments?: string[];
+
+    @IsOptional()
     @IsDateString()
     visitDate?: string;
 

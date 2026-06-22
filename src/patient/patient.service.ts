@@ -52,6 +52,7 @@ export class PatientService {
                 { phone: ILike(`%${search}%`), ...(gender && { gender }) },
             ]
             : gender ? [{ gender }] : {};
+            
         const [patients, total] = await this.patientRepository.findAndCount({
             where,
             order: { [sort]: order },
